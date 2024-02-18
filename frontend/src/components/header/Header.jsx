@@ -1,6 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { reducerContants } from '../../redux/constant'
+import runCode from '../../Helpers/Helpers'
+
+
 
 function Header() {
 
@@ -8,9 +11,11 @@ function Header() {
     const loading = useSelector(state => state.loading)
     const dispatch = useDispatch()
 
-    function codeRun() {
-        console.log("code is running.")
+    async function codeRun() {
         dispatch({type:reducerContants.LOADING})
+        const data = await runCode(code);
+        console.log("code is running.", data)
+        dispatch({type:reducerContants.RUN_CODE, payload: data})
     }
 
   return (

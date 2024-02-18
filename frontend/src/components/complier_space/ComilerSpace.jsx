@@ -10,14 +10,23 @@ function ComilerSpace() {
       <div className="rounded codie-space">
         <textarea
           className="form-control floatingTextarea"
-          value={compile}
+          value={
+            compile?.status == "Error" 
+            ?
+            compile?.error
+            :
+            compile?.output
+          }
           placeholder={
             loading
               ? "your code is comiling. please wait... "
               : "your code compile here..."
           }
           disabled
-          style={{ cursor: loading ? "progress" : "pointer" }}
+          style={{ 
+            cursor: loading ? "progress" : "pointer",
+            color: compile?.status == "Error" ? 'red' : 'green'
+          }}
         ></textarea>
       </div>
     </div>
