@@ -4,7 +4,7 @@ function ComilerSpace() {
   return (
     <div id="ComilerSpace">
       <div className="rounded codie-space">
-      <textarea class="form-control floatingTextarea" placeholder="your code compile here..." disabled></textarea>
+      <textarea className="form-control floatingTextarea" placeholder="your code compile here..." disabled></textarea>
       </div>
     </div>
   );
