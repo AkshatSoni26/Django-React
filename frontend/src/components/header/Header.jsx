@@ -14,7 +14,9 @@ function Header() {
     }
 
   return (
-    <div className='w-100 d-flex justify-content-end'>
+    <div className='w-100 d-flex justify-content-between'>
+        <div className='ms-3'>Python IDE</div>
+        <div style={{backgroundColor:'red'}}>This IDE is currently supported only for python.</div>
         <button className='me-3' onClick={codeRun} disabled={loading} style={{cursor: loading ? 'progress' : 'pointer'}}>
             <span className='px-2 py-1 rounded' >
                 Run
