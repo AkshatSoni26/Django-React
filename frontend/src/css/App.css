@@ -1,0 +1,155 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.lato-thin {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .lato-light {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .lato-black {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .lato-thin-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .lato-light-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .lato-bold-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .lato-black-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  
+:root{
+    --background-color:#2C2C2C;
+    --background-color-main:#000000b7;
+    --text-color:#fff;
+    --default-font-size: 24px;
+    --run-button-background-color: #15e003;
+}
+
+
+body{
+    height: 94vh;
+    width: 100vw;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--default-font-size);
+}
+
+#root{
+height: 100%;
+width: 100%;
+}
+
+button{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button > span {
+    font-size: 16px;
+    background-color: var(--run-button-background-color);
+}
+
+/* button > span:hover{
+    background-color: red;
+} */
+
+/*-------------------------------------------CodeSpace-----------------------------------------------*/
+#CodeSpace{
+width: 60%;
+height: 100%;
+}
+
+.codie-space{
+    background-color:var(--background-color-main);
+    height: 97%;
+}
+
+
+.floatingTextarea {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* This ensures it takes up 100% of available height */
+    resize: none; /* This removes the resize handle */
+    background-color: var(--background-color-main);
+    color: var(--text-color);
+}
+
+.form-control:focus, .form-control:disabled{
+    color: var(--text-color);
+    background-color: var(--background-color-main);
+    outline: 0;
+}
+
+
+.floatingTextarea::placeholder {
+    color: var(--text-color); /* Placeholder text color */
+}
+/*-------------------------------------------comiler-and-test-case-----------------------------------------------*/
+.comiler-and-test-case{
+    width: 40%;
+    height: 98%;
+}
+
+/*-------------------------------------------TestSpace-----------------------------------------------*/
+#TestSpace{
+    height: 34vh;
+}
+
+/*-------------------------------------------ComilerSpace-----------------------------------------------*/
+#ComilerSpace{
+    height: 59vh;
+}
+
