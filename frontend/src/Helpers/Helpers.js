@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { backend_urls } from '../urrls';
 
 const runCode = async (code) => {
   try {
@@ -6,7 +7,7 @@ const runCode = async (code) => {
     console.log("code ===>", code)
     // Send a POST request to the Django backend
     const response = await axios.post(
-        'http://localhost:8000/server/', 
+        backend_urls.run, 
         { code },
       );
 
