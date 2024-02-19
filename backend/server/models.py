@@ -1,15 +1,24 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
+
+
+class UserProfileManager(models.Manager):
+    def create_user(self, username, password):
+        # Ensure username is unique
+        if self.filter(username=username).exists():
+            raise ValueError('Username already exists.')
+
+        # Create and save the user instance
+        user = self.model(username=username, password=make_password(password))
+        user.save(using=self._db)
+        return user
 
 class UserProfile(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)
 
-    def save(self, *args, **kwargs):
-        # Ensure password is at least 4 characters long
-        if len(self.password) < 4:
-            raise ValueError("Password must be at least 4 characters long.")
-        super().save(*args, **kwargs)
+    objects = UserProfileManager()
 
     def __str__(self):
         return self.username
