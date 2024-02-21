@@ -6,7 +6,8 @@ const initialState = {
   loading: false,
   compile: '',
   is_editior: true,
-  submissions: ''
+  submissions: '',
+  input:''
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +15,9 @@ const rootReducer = (state = initialState, action) => {
 
     case reducerContants.CODE:
       return { ...state, code: action.payload };
+
+    case reducerContants.INPUT:
+      return { ...state, input: action.payload };
     
     case reducerContants.LOADING:
         return { ...state, loading: !state.loading };

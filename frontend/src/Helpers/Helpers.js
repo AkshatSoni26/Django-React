@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { backend_urls } from '../urrls';
 
-const runCode = async (code) => {
+const runCode = async (code, input) => {
   try {
 
     const id =localStorage.getItem('@user')
@@ -10,7 +10,7 @@ const runCode = async (code) => {
     // Send a POST request to the Django backend
     const response = await axios.post(
         backend_urls.run, 
-        { code, id },
+        { code, id, input },
       );
 
     // If the request is successful, return the response data

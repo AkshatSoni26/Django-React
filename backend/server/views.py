@@ -4,6 +4,7 @@ import sys
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import check_password
 
 
 import io
@@ -11,6 +12,7 @@ import json
 import sys
 from django.http import JsonResponse
 from .models import CodeSubmission, UserProfile
+import subprocess
 
 
 
@@ -30,14 +32,14 @@ def login(request):
                 return JsonResponse({'error': 'Username and password are required.'}, status=400)
 
             # Check if the username exists in the database
-            user = UserProfile.objects.filter(username=username).first()
+            user = UserProfile.objects.filter(username=username).values().first()
 
-            if user is not None and user.check_password(password):
+            if (user['username'] == username ) and check_password(password, user['password']):
                 # Username exists and password is correct
-                return JsonResponse({'message': 'Login successful.', 'code': 200}, status=200)
+                return JsonResponse({'message': 'Login successful.', 'user_id': user['id'], 'code': 200}, status=200)
             else:
                 # Username does not exist or password is incorrect
-                return JsonResponse({'error': 'Invalid username or password.', 'code': 200}, status=401)
+                return JsonResponse({'error': 'Invalid username or password.'}, status=401)
         except Exception as e:
             # Handle any other exceptions
             print(e)
@@ -86,26 +88,47 @@ def index(request):
         try:
             request_body = json.loads(request.body)
             code = request_body['code']
-            user_id = request_body['id']  # Extract user_id from frontend request
+            user_id = request_body['id']  
+            input_part = request_body['input']
 
-            # Compile the code
-            compiled_code = compile(code, '<string>', 'exec')
-
-            # Execute the compiled code in a restricted environment (if available)
-            # ...
-
-            # Redirect stdout to a buffer
-            stdout_buffer = io.StringIO()
-            sys.stdout = stdout_buffer
-
-            exec(compiled_code)
-
-            output = stdout_buffer.getvalue()
-            error = None
-            # Save code submission data to CodeSubmission model
             user = UserProfile.objects.get(id=user_id)
-            code_submission = CodeSubmission(user=user, code=code, compile_code=output, status='Executed' if output else 'Error')
-            code_submission.save()
+
+            error = None
+            output = None
+
+
+            print("request_body ===>", input_part)
+
+            y = input_part
+
+            input_part = input_part.replace("\n"," ").split(" ")
+
+            def input():
+                a = input_part[0]
+                del input_part[0]
+                return a
+
+            if (user):
+
+                original_stdout = sys.stdout
+                sys.stdout = open('file.txt', 'w') #change the standard output to the file we created
+
+                #execute code
+                exec(code)  #example =>   print("hello world")
+
+                sys.stdout.close()
+
+                sys.stdout = original_stdout  #reset the standard output to its original value
+
+                # finally read output from file and save in output variable
+                output = open('file.txt', 'r').read()
+
+                code_submission = CodeSubmission(user=user, code=code, compile_code=output, status='Executed' if output else 'Error')
+                code_submission.save()
+            
+            else:
+                 return JsonResponse({'error': 'User not found.'}, status=405)
+
 
         except SyntaxError as e:
             output = None
@@ -113,9 +136,6 @@ def index(request):
         except Exception as e:
             output = None
             error = f"Execution error: {e}"  # Capture more specific errors
-        finally:
-            sys.stdout = sys.__stdout__
-
 
         response_data = {
             'output': output,
@@ -144,7 +164,7 @@ def submissions(request):
             previous_submissions = CodeSubmission.objects.filter(user=user)
 
             # Serialize code submissions data
-            previous_code = [{'code': submission.code, 'status': submission.status, 'compile_code': submission.compile_code} for submission in previous_submissions]
+            previous_code = [{'code': submission.code, 'status': submission.status, 'compile_code': submission.compile_code} for submission in previous_submissions[::-1]]
 
             # Return previous code submissions data as JSON response
             return JsonResponse({'previous_code': previous_code}, status=200)
@@ -158,3 +178,4 @@ def submissions(request):
 
     # Return method not allowed for other HTTP methods
     return JsonResponse({'error': 'Method not allowed.'}, status=405)
+

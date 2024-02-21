@@ -59,7 +59,13 @@ function Register() {
         })
         .catch(error => {
             console.error('Error:', error);
-            setError('Registration failed. Please try again.');
+            if (error.request.status === 400){
+                setError('User is already registerd.');
+                navigate(frontend_urls.login)
+            }
+            else{
+                setError('Registration failed. Please try again.');
+            }
         });
     };
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/App.css'; // Import your CSS file for login styles
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { backend_urls, frontend_urls } from '../urrls';
 
@@ -49,6 +49,7 @@ function Login() {
         )
         .then(response => {
             console.log('Response:', response.data);
+            localStorage.setItem('@user', response.data.user_id)
             navigate(frontend_urls.home);
         })
         .catch(error => {
@@ -57,6 +58,15 @@ function Login() {
             navigate(frontend_urls.register)
         });
     };
+
+    useEffect(
+        () => {
+            const user = localStorage.getItem("@user")
+            if (user) {
+                navigate(frontend_urls.home)
+            }
+        }, []
+    )
 
     return (
         <div className='login-container'>
@@ -74,6 +84,7 @@ function Login() {
                     </div>
                     <button type="submit" className='btn-submit'>Submit</button>
                 </form>
+                <div style={{color:'black', fontSize: '16px'}}>not registerd. <Link to={frontend_urls.register}>click here</Link> </div>
             </div>
         </div>
     );
