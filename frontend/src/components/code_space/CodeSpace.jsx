@@ -62,7 +62,8 @@ function formatCodeObjectString(codeObjectString) {
             width: '100%',
             height:'100%',
             fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-            fontSize:`${font_size}px`
+            fontSize:`${font_size}px`,
+            overflow:'auto'
           }}
         />
         ) : (
