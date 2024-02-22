@@ -5,4 +5,5 @@ export const reducerContants = {
     IS_EDITIOR: 'IS_EDITIOR',
     SUBMISSIONS:"SUBMISSIONS",
     INPUT:"INPUT",
+    FONT_SIZE:'FONT_SIZE'
 }

@@ -14,6 +14,8 @@ function Header() {
     const loading = useSelector(state => state.loading)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const font_size = useSelector(state => state.font_size)
+
 
     async function codeRun() {
         dispatch({ type: reducerContants.LOADING })
@@ -40,6 +42,10 @@ function Header() {
         <div className='w-100 d-flex justify-content-between'>
             <div className='ms-3'>
                 Python IDE
+            </div>
+            <div>
+                font:- 
+                <input className='fontSize' type="number" value={font_size} onChange={(e) => dispatch({type:reducerContants.FONT_SIZE, payload:e.target.value})} />
             </div>
             <div>
                 <button className='me-1 mt-2' onClick={codeRun} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer' }}>

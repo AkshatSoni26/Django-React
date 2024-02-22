@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reducerContants } from "../../redux/constant";
+import CodeEditor from '@uiw/react-textarea-code-editor';
+
+
 
 function CodeSpace() {
   const dispatch = useDispatch();
   const isEditior = useSelector((state) => state.is_editior);
   const submissions = useSelector((state) => state.submissions);
+  const [code, setCode] = useState(`def add(a, b): \n  return a + b\n`);
+  const font_size = useSelector(state => state.font_size)
 
   console.log(submissions.previous_code);
 
@@ -40,16 +45,26 @@ function formatCodeObjectString(codeObjectString) {
   }
 }
 
-
   return (
     <div id="CodeSpace">
       <div className="m-2 rounded codie-space">
         {isEditior ? (
-          <textarea
-            className="form-control floatingTextarea"
-            onBlur={codeSaver}
-            placeholder="write your code here..."
-          ></textarea>
+          <CodeEditor
+          value={code}
+          language="python"
+          onBlur={codeSaver}
+          placeholder="Please enter python code here..."
+          onChange={(evn) => setCode(evn.target.value)}
+          padding={15}
+          
+          style={{
+            backgroundColor: "var(--background-color-main)",
+            width: '100%',
+            height:'100%',
+            fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+            fontSize:`${font_size}px`
+          }}
+        />
         ) : (
           <div className="overflow-auto h-100 p-2">
             {submissions?.previous_code?.length 

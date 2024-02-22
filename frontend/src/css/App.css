@@ -291,3 +291,10 @@ height: 100%;
   overflow-x: auto; /* Enable horizontal scrolling for long code */
   white-space: pre-wrap; /* Preserve line breaks */
 }
+
+
+.fontSize{
+  width: 50px;
+  background-color: #2d2a2a;
+  color: white;
+}
