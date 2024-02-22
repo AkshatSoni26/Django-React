@@ -71,7 +71,7 @@ function Login() {
     return (
         <div className='login-container'>
             <div className='login-form'>
-                <div className='m-auto' style={{color:'black'}}>Login</div>
+                <div className='m-auto text-center' style={{color:'black'}}>Login</div>
                 <form onSubmit={handleSubmit}>
                 {error && <div className="error" style={{color:'red', fontSize: '14px'}}>*{error}</div>}
                     <div className='input-group'>

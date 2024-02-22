@@ -38,27 +38,22 @@ function Header() {
 
     return (
         <div className='w-100 d-flex justify-content-between'>
-            <div className='ms-3'>Python IDE</div>
-            <div style={{ backgroundColor: 'red' }}>This IDE is currently supported only for python.</div>
-
+            <div className='ms-3'>
+                Python IDE
+            </div>
             <div>
-                {/* <button className='me-1' onClick={codeRun} disabled={loading} style={{cursor: loading ? 'progress' : 'pointer'}}>
-            <span className='px-2 py-1 rounded' >
-                editior
-            </span>
-        </button> */}
-                <button className='me-1' onClick={codeRun} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer' }}>
+                <button className='me-1 mt-2' onClick={codeRun} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer' }}>
                     <span className='px-2 py-1 rounded' >
                         Run
                     </span>
                 </button>
-                <button className='me-1' onClick={prevSubmissions} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer' }}>
+                <button className='me-1 mt-2' onClick={prevSubmissions} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer' }}>
                     <span className='px-2 py-1 rounded' >
                         prev. submissions
                     </span>
                 </button>
 
-                <button className='me-3' onClick={() => {
+                <button className='me-3 mt-2' onClick={() => {
                     localStorage.clear();
                     window.location.reload();
                 }} disabled={loading} style={{ cursor: loading ? 'progress' : 'pointer', }}>

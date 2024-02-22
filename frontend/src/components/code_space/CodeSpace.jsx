@@ -15,7 +15,6 @@ function CodeSpace() {
     dispatch({ type: reducerContants.CODE, payload: code });
   }
 
-  // Function to extract relevant information and format it
 function formatCodeObjectString(codeObjectString) {
   // Regular expression pattern to extract relevant information
   const pattern = /<code object (.+?) at (.+?), file '(.+?)', line (\d+)>/;
@@ -57,9 +56,11 @@ function formatCodeObjectString(codeObjectString) {
             ?
               submissions?.previous_code?.map((submission, id) => (
                 <div key={id} style={{ color: "white" }}>
-                  <div className="status">{submission.status}</div>
-                  <div className="code">{submission.code}</div>
-                  <div className="compile_code">{formatCodeObjectString(submission.compile_code)}</div>
+                  <div className="status"> status of code:- <span style={{ color: submission.status ==`Executed` ? 'green' : 'red'}}>{submission.status}</span></div>
+                  <div className="code">
+                  {submission.code}
+                  </div>
+                  <div className="compile_code" style={{ color: submission.status ==`Executed` ? 'green' : 'red'}}>{formatCodeObjectString(submission.compile_code)}</div>
                 </div>
               ))
             :
@@ -68,12 +69,6 @@ function formatCodeObjectString(codeObjectString) {
           </div>
         )}
 
-        {/* <LiveMarkdownTextarea
-  placeholder="Enter your comment here."
-  className="row"
-  inputClassName="field column"
-  previewClassName="column comment-preview"
-/> */}
       </div>
     </div>
   );

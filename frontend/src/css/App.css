@@ -69,10 +69,14 @@
     --background-color:#2C2C2C;
     --background-color-main:#000000b7;
     --text-color:#fff;
-    --default-font-size: 24px;
+    --default-font-size: 18px;
     --run-button-background-color: #15e003;
 }
 
+label{
+  color: black;
+  font-size: 14px;
+}
 
 body{
     height: 94vh;
@@ -281,7 +285,7 @@ height: 100%;
 .compile_code {
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   border-radius: 5px;
   background-color: var(--background-color);
   overflow-x: auto; /* Enable horizontal scrolling for long code */
