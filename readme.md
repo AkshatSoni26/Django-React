@@ -2,7 +2,9 @@
 [link of the site](https://main.d1o9dxmeh88ojh.amplifyapp.com/)
 
 for using this you first allow to `Insecure content` .
-for this goto `site settings -> Insecure content -> allow`
+for this goto `site settings -> Insecure content -> allow`.
+
+#### why this beacuse our backend use the `http` not `https`.
 
 
 # Python IDE 
