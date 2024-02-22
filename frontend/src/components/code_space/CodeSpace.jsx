@@ -76,7 +76,7 @@ function formatCodeObjectString(codeObjectString) {
                   <div className="code">
                   {submission.code}
                   </div>
-                  <div className="compile_code" style={{ color: submission.status ==`Executed` ? 'green' : 'red'}}>{formatCodeObjectString(submission.compile_code)}</div>
+                  <div className="compile_code" style={{ color: submission.status ==`Executed` ? 'green' : 'red'}}>Output:-{formatCodeObjectString(submission.compile_code)}</div>
                 </div>
               ))
             :
