@@ -25,6 +25,12 @@ pip install -r requirements.txt
 
 after then you need to run some migration. beacuse we use database here so we need to make the tables for that. so for that you need to first run this command.
 ```
+python manage.py makemigrations
+```
+
+after then,
+```
+python manage.py migrate
 ```
 
 after then you need to start the your server by running this command.
