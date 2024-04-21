@@ -1,6 +1,4 @@
-// const base = 'http://localhost:8000'
-
-const base = 'http://13.51.161.12'
+const base = 'http://127.0.0.1:8000'
 
 
 export const backend_urls = {
